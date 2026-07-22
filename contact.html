@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact | Maine Foam Parties</title>
 <meta name="description" content="Get a quote or book your Maine Foam Parties event. Call (207) 213-8190 or send us your event details.">
+<link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -147,8 +153,9 @@
       <h3 style="margin-bottom:6px;">Request your date</h3>
       <p style="color:#52708A; margin-bottom:26px;">Fill this out and we'll get back to you within 1&ndash;2 business days.</p>
 
-      <!-- Update the form action below with your own Formspree endpoint -->
-      <form action="https://formspree.io/f/mwvgnvzp" method="POST">
+      <div class="form-msg" id="formMsg"></div>
+
+      <form id="contactForm" action="https://formspree.io/f/mwvgnvzp" method="POST">
         <div class="field-row">
           <div class="field">
             <label for="name">Full name</label>
@@ -185,7 +192,14 @@
           <label for="message">Tell us about your event</label>
           <textarea id="message" name="message" rows="4" placeholder="Number of guests, age range, anything else we should know..."></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Request <span class="bubble" aria-hidden="true"></span></button>
+
+        <!-- Formspree spam honeypot: bots fill this in, humans don't. Keep it hidden. -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+        <!-- Fixed subject line for the notification email -->
+        <input type="hidden" name="_subject" value="New foam party request — Maine Foam Parties site">
+
+        <button type="submit" class="btn btn-primary" id="submitBtn" style="width:100%; justify-content:center;">Send Request <span class="bubble" aria-hidden="true"></span></button>
       </form>
     </div>
 
@@ -259,5 +273,48 @@
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script src="js/script.js"></script>
+<script>
+const contactForm = document.getElementById('contactForm');
+const formMsg = document.getElementById('formMsg');
+const submitBtn = document.getElementById('submitBtn');
+
+contactForm.addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+
+  const data = new FormData(contactForm);
+
+  try {
+    const response = await fetch(contactForm.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      formMsg.textContent = "Thanks — your request is on its way. We'll be in touch within 1–2 business days.";
+      formMsg.classList.remove('error');
+      formMsg.classList.add('show');
+      contactForm.reset();
+    } else {
+      const result = await response.json().catch(() => null);
+      const detail = result && result.errors && result.errors.length
+        ? result.errors.map(err => err.message).join(', ')
+        : 'Something went wrong. Please try again or call us directly.';
+      formMsg.textContent = detail;
+      formMsg.classList.add('error', 'show');
+    }
+  } catch (err) {
+    formMsg.textContent = "Something went wrong sending your request. Please try again or call us directly at (207) 213-8190.";
+    formMsg.classList.add('error', 'show');
+  }
+
+  formMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'Send Request';
+});
+</script>
 </body>
 </html>
