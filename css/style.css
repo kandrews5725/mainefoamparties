@@ -889,7 +889,7 @@ section { position: relative; }
   .hero { min-height: auto; display: block; }
   .hero-photo { position: relative; inset: auto; height: 240px; }
   .hero-overlay { display: none; }
-  .hero-content { position: static; background: var(--navy); padding: 32px 0 40px; }
+  .hero-content { position: static; background: var(--navy); padding: 32px 0 40px; transform: none; }
   .hero-text { text-align: center; max-width: 100%; margin: 0 auto; }
   .hero p.lede { margin-left: auto; margin-right: auto; }
   .hero-cta-row, .trust-row { justify-content: center; }
