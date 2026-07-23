@@ -747,7 +747,7 @@ section { position: relative; }
   border-color: var(--sky);
   background: var(--white);
 }
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
 .field-row .field { min-width: 0; }
 
 .form-msg {
