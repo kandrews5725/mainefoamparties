@@ -287,7 +287,7 @@ p { margin: 0 0 1em; }
    at a few corners per section, rather than a uniform strip or dot-field */
 .bubble-decor {
   position: absolute;
-  z-index: 0;
+  z-index: 6;
   pointer-events: none;
   opacity: 0.95;
   filter: drop-shadow(0 6px 10px rgba(8, 39, 68, 0.12));
@@ -295,10 +295,10 @@ p { margin: 0 0 1em; }
 }
 .bubble-decor svg { display: block; width: 100%; height: 100%; }
 
-.bubble-decor.size-sm { width: 170px; height: 170px; }
-.bubble-decor.size-xs { width: 130px; height: 130px; }
-.bubble-decor.size-md { width: 230px; height: 230px; }
-.bubble-decor.size-lg { width: 300px; height: 300px; }
+.bubble-decor.size-sm { width: 220px; height: 220px; }
+.bubble-decor.size-xs { width: 170px; height: 170px; }
+.bubble-decor.size-md { width: 280px; height: 280px; }
+.bubble-decor.size-lg { width: 350px; height: 350px; }
 
 .bubble-decor.pos-tl { top: 6%; left: 3%; }
 .bubble-decor.pos-tr { top: 8%; right: 4%; }
@@ -321,9 +321,9 @@ p { margin: 0 0 1em; }
 }
 
 @media (max-width: 720px) {
-  .bubble-decor.size-lg { width: 190px; height: 190px; }
-  .bubble-decor.size-md { width: 150px; height: 150px; }
-  .bubble-decor.size-sm { width: 120px; height: 120px; }
+  .bubble-decor.size-lg { width: 230px; height: 230px; }
+  .bubble-decor.size-md { width: 190px; height: 190px; }
+  .bubble-decor.size-sm { width: 150px; height: 150px; }
   .bubble-decor.pos-mid-l, .bubble-decor.pos-mid-r { display: none; }
 }
 
@@ -779,7 +779,6 @@ section { position: relative; }
 /* A small cluster that sits ON TOP of the card, overlapping its corner,
    rather than only in the page background behind everything */
 .bubble-decor.splash {
-  z-index: 5;
   animation-duration: 6s;
 }
 .contact-info-card h3 { color: var(--white); }
