@@ -731,6 +731,7 @@ section { position: relative; }
 .field select,
 .field textarea {
   width: 100%;
+  min-width: 0;
   padding: 13px 16px;
   border-radius: var(--radius-sm);
   border: 2px solid #DCE6EE;
@@ -747,6 +748,7 @@ section { position: relative; }
   background: var(--white);
 }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field-row .field { min-width: 0; }
 
 .form-msg {
   display: none;
