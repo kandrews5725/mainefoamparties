@@ -311,22 +311,32 @@ p { margin: 0 0 1em; }
    click-to-pop interaction is discoverable rather than a hidden easter egg */
 .bubble-hint {
   position: absolute;
-  top: 38%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotate(-8deg);
+  transform: translate(-50%, -50%) rotate(-9deg);
   z-index: 2;
   color: var(--navy);
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.95rem;
+  font-weight: 800;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   white-space: nowrap;
   pointer-events: none;
+  animation: bubble-hint-bounce 1.6s ease-in-out infinite;
   text-shadow:
     -1.5px -1.5px 0 #fff,
      1.5px -1.5px 0 #fff,
     -1.5px  1.5px 0 #fff,
      1.5px  1.5px 0 #fff,
      0 3px 8px rgba(13,59,102,0.25);
+}
+@keyframes bubble-hint-bounce {
+  0%, 100% { transform: translate(-50%, -50%) rotate(-9deg) scale(1); }
+  50% { transform: translate(-50%, -50%) rotate(-9deg) scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bubble-hint { animation: none; }
 }
 
 .bubble-decor.size-sm { width: 220px; height: 220px; }
