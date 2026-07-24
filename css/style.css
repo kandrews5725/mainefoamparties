@@ -307,6 +307,26 @@ p { margin: 0 0 1em; }
 }
 .bubble-decor svg { display: block; width: 100%; height: 100%; }
 
+/* One-time "Pop me!" hint on the first cluster a visitor sees, so the
+   click-to-pop interaction is discoverable rather than a hidden easter egg */
+.bubble-hint {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  z-index: 2;
+  background: linear-gradient(180deg, var(--gold-1), var(--gold-2));
+  color: var(--navy-deep);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 5px 13px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 6px 14px rgba(242, 137, 29, 0.4);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
 .bubble-decor.size-sm { width: 220px; height: 220px; }
 .bubble-decor.size-xs { width: 170px; height: 170px; }
 .bubble-decor.size-md { width: 280px; height: 280px; }
