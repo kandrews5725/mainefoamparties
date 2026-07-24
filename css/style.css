@@ -296,6 +296,7 @@ p { margin: 0 0 1em; }
 }
 .bubble-decor.popped {
   animation: bubble-pop-out 0.45s ease-out forwards;
+  animation-delay: 0s !important;
   pointer-events: none;
 }
 @keyframes bubble-pop-out {
