@@ -315,16 +315,18 @@ p { margin: 0 0 1em; }
   left: 50%;
   transform: translate(-50%, -50%) rotate(-8deg);
   z-index: 2;
-  background: linear-gradient(180deg, var(--gold-1), var(--gold-2));
-  color: var(--navy-deep);
+  color: var(--navy);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.82rem;
-  padding: 5px 13px;
-  border-radius: var(--radius-pill);
-  box-shadow: 0 6px 14px rgba(242, 137, 29, 0.4);
+  font-size: 0.95rem;
   white-space: nowrap;
   pointer-events: none;
+  text-shadow:
+    -1.5px -1.5px 0 #fff,
+     1.5px -1.5px 0 #fff,
+    -1.5px  1.5px 0 #fff,
+     1.5px  1.5px 0 #fff,
+     0 3px 8px rgba(13,59,102,0.25);
 }
 
 .bubble-decor.size-sm { width: 220px; height: 220px; }
