@@ -13,6 +13,7 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="css/style.css">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
@@ -135,6 +136,8 @@
 
         <!-- Fixed subject line for the notification email -->
         <input type="hidden" name="_subject" value="New foam party request — Maine Foam Parties site">
+
+        <div class="g-recaptcha" data-sitekey="6Ld7U2MtAAAAALkFU5isMy6qSATdx_iPBBM3UVfF" style="margin-bottom:20px;"></div>
 
         <button type="submit" class="btn btn-primary" id="submitBtn" style="width:100%; justify-content:center;">Send Request <span class="bubble" aria-hidden="true"></span></button>
       </form>
@@ -307,6 +310,14 @@ const submitBtn = document.getElementById('submitBtn');
 contactForm.addEventListener('submit', async function (e) {
   e.preventDefault();
 
+  if (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse().length === 0) {
+    formMsg.textContent = "Please check the \"I'm not a robot\" box before sending.";
+    formMsg.classList.remove('error');
+    formMsg.classList.add('error', 'show');
+    formMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
   submitBtn.disabled = true;
   submitBtn.textContent = 'Sending…';
 
@@ -324,6 +335,7 @@ contactForm.addEventListener('submit', async function (e) {
       formMsg.classList.remove('error');
       formMsg.classList.add('show');
       contactForm.reset();
+      if (typeof grecaptcha !== 'undefined') { grecaptcha.reset(); }
     } else {
       const result = await response.json().catch(() => null);
       const detail = result && result.errors && result.errors.length
