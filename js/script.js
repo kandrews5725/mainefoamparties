@@ -106,4 +106,20 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => io.observe(el));
   }
 
+  /* Bubble clusters pop and vanish on click — a fun interaction, and a
+     built-in escape hatch if one ever lands somewhere awkward */
+  document.querySelectorAll('.bubble-decor').forEach(cluster => {
+    cluster.addEventListener('click', () => {
+      if (cluster.classList.contains('popped')) return;
+      cluster.classList.add('popped');
+      cluster.addEventListener('animationend', () => {
+        cluster.style.display = 'none';
+      }, { once: true });
+      // Fallback in case prefers-reduced-motion skips the animation entirely
+      if (prefersReducedMotion) {
+        cluster.style.display = 'none';
+      }
+    });
+  });
+
 });
