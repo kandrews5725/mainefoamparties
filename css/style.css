@@ -818,6 +818,14 @@ section { position: relative; }
   border: 1px solid #D8E6F1;
 }
 .form-msg.show { display: block; }
+.form-msg.success {
+  background: linear-gradient(180deg, var(--gold-1), var(--gold-2));
+  color: var(--navy-deep);
+  border: none;
+  box-shadow: var(--shadow-pop);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
 .form-msg.error {
   background: #FDECEC;
   color: #A02525;
