@@ -312,7 +312,7 @@ contactForm.addEventListener('submit', async function (e) {
 
   if (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse().length === 0) {
     formMsg.textContent = "Please check the \"I'm not a robot\" box before sending.";
-    formMsg.classList.remove('error');
+    formMsg.classList.remove('success');
     formMsg.classList.add('error', 'show');
     formMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
@@ -331,9 +331,9 @@ contactForm.addEventListener('submit', async function (e) {
     });
 
     if (response.ok) {
-      formMsg.textContent = "Thanks — your request is on its way!";
+      formMsg.textContent = "Thanks — your request is on its way! 🫧";
       formMsg.classList.remove('error');
-      formMsg.classList.add('show');
+      formMsg.classList.add('success', 'show');
       contactForm.reset();
       if (typeof grecaptcha !== 'undefined') { grecaptcha.reset(); }
     } else {
@@ -342,10 +342,12 @@ contactForm.addEventListener('submit', async function (e) {
         ? result.errors.map(err => err.message).join(', ')
         : 'Something went wrong. Please try again or call us directly.';
       formMsg.textContent = detail;
+      formMsg.classList.remove('success');
       formMsg.classList.add('error', 'show');
     }
   } catch (err) {
     formMsg.textContent = "Something went wrong sending your request. Please try again or call us directly at (207) 213-8190.";
+    formMsg.classList.remove('success');
     formMsg.classList.add('error', 'show');
   }
 
